@@ -1,22 +1,23 @@
 pipeline {
-    agent { label 'agent1' }   // Use your agent node label
+    agent { label 'agent1' }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/userk007-cmd/pract06.git'
+                // Checkout from GitHub repo
+                git branch: 'main', url: 'https://github.com/userk007-cmd/pract06.git'
             }
         }
 
         stage('Build') {
             steps {
-                bat 'mvn clean package'   // Use 'sh' if agent is Linux
+                bat 'mvn clean package'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'mvn test'           // Use 'sh' if agent is Linux
+                bat 'mvn test'
             }
         }
     }
